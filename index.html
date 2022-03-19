@@ -8,13 +8,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <div class="nav-bar"></div>
     <div id="app">
-        <h1>{{product}}</h1>  <!-- double {{}} relate the item to the property in the vue instance of the matching id, it is called an expression and used to evaluate a value-->
-        <h3>{{description}}</h3>
+    <div class="product">
+
+        <div class="product-image">
+            <img  :src="image"> <!-- the ':' is shorthand for 'v-bind:' which tells the browser that 'src' is tied to the "data"-->
+        </div>
+
+        <div class="product-info">
+            <h1>{{product}}</h1>  <!-- double {{}} relate the item to the property in the vue instance of the matching id, it is called an expression and used to evaluate a value-->
+            <p v-show="inStock">In Stock</p><!--'v-show' is an efficient way to display elements with boolean values-->
+            <p v-if="onSale">On Sale!</p>
+
+            <ul>
+                <li v-for="detail in details">{{detail}}</li><!--'v-for' loops through each element in an array that is stored in the Vue object-->
+            </ul>
+            
+            <div v-for="variant in variants" :key="variant.variantId">
+                <p>{{variant.variantColor}}</p>
+            </div>
+            
+            <div v-for="size in sizes" :key="size.sizeId">
+                <p>{{size.productSize}}</p>
+            </div>
+
+        </div>
+
+    </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> <!--This script 'installs' Vue-->
     <script src="app.js"></script>
 </body>
 </html>
