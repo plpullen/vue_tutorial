@@ -4,7 +4,7 @@
     el:'#app', //'el' for element relates the vue instance and the dom element with the specified id - in this case - #app
     data: { //this gives the instance data properties like 'product: Socks'
         product: 'Socks', //if the data is updated here it will update everywhere the instance is applied
-        image: "/socks.jpg",
+        image: "/green_socks.jpg",
         link: "http://www.google.com",
         inStock: true,
         onSale: true,
@@ -12,11 +12,13 @@
         variants:[
             {
                 variantId: 2234,
-                variantColor: "green"
+                variantColor: "green",
+                variantImage: '/green_socks.jpg'
             },
             {
                 variantId: 2235,
-                variantColor: "blue"
+                variantColor: "blue",
+                variantImage: '/blue_socks.jpg'
             }
         ],
         sizes:[
@@ -32,6 +34,15 @@
             sizeId: 3,
             productSize: "lg"
         }
-    ]
+    ],
+    cart: 0,
+    },
+    methods: {
+    addToCart(){this.cart += 1},
+    updateProduct(variantImage){
+        this.image = variantImage
+    },
+    removeFromCart(){this.cart -= 1}
     }
-})
+}
+)

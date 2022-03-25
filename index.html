@@ -25,14 +25,28 @@
                 <li v-for="detail in details">{{detail}}</li><!--'v-for' loops through each element in an array that is stored in the Vue object-->
             </ul>
             
-            <div v-for="variant in variants" :key="variant.variantId">
-                <p>{{variant.variantColor}}</p>
+            <div v-for="variant in variants" 
+            :key="variant.variantId"
+            class="color-box"
+            :style="{ backgroundColor: variant.variantColor }"
+            @mouseover="updateProduct(variant.variantImage)">
             </div>
             
-            <div v-for="size in sizes" :key="size.sizeId">
+            <!-- <div v-for="size in sizes" :key="size.sizeId">
                 <p>{{size.productSize}}</p>
-            </div>
+            </div> -->
 
+            <button v-on:click="addToCart" 
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock}">Add to Cart</button> <!--shorthand for v-on is @-->
+                    <!--add the class 'disabledButton'/(x) if/: inStock/(y) is false-->
+            <button @click="removeFromCart" 
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock}">Remove</button> <!--shorthand for v-on is @-->
+
+            <div class="cart">
+                <p>Cart ({{cart}})</p>
+            </div>
         </div>
 
     </div>
